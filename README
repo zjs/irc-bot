@@ -1,0 +1,24 @@
+This IRC bot is intended for users familiar with Python.
+
+This is simply an object-oriented implementation of an IRC bot using Twisted.
+
+
+To build an IRC bot which sends messages based on those it receives, one can
+simply modify the ExampleCommandHanderFactory. This is done by mapping one or
+more regular expressions to one or more functions which are be executed when
+a message evaluating true on the keyed regular expression is received.
+
+To build a more complex bot, modifications to the ExampleCommandHandler may be
+necessary. Such modifications might include allowing filtering of messages
+beyond simply whether they are sent directly to the bot or not.
+
+
+To run directy, ircBot.py must be updated to specify the desired configuration.
+
+To run from another Python application, ircBot.py serves as example invocation.
+
+
+Dependencies
+ - Python (tested with version 2.6.6)
+ - Twisted (tested with 10.1.0)
+
