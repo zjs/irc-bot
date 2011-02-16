@@ -47,19 +47,14 @@ class ExampleCommandHandler(CommandHandler):
                 self._processActions(handler(username, channel, message))        
 
     def _processActions(self, actions):
-        if isinstance(actions, list):
-            for action in actions:
-                self._processAction(action)
-        else:
-            self._processAction(actions)
+        if not isinstance(actions, list):
+            actions = [actions]
 
-    def _processAction(self, action):
-        target = action.get("target")
-        if isinstance(action.get("message"), list):
-            for message in action.get("message"):
-                self._callback(action.get("target"), message)
-        else:
-            self._callback(action.get("target"), action.get("message"))
+        for action in actions:
+            target = action.get("target")
+            messages = action.get("message")
+            if not isinstance(messages, list):
+                messages = [messages]
 
-
-
+            for message in messages:
+                self._callback(target, message)
