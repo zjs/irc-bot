@@ -1,25 +1,11 @@
-# Copyright (c) 2001-2009 Twisted Matrix Laboratories.
-# See LICENSE for details.
-
-
 """
-An example IRC log bot - logs a channel's events to a file.
+Example invocation for IRC Bot
 
-If someone says the bot's name in the channel followed by a ':',
-e.g.
+To customize commands, simply create a subclass of CommandHandlerFactory.
+ExampleCommandHandlerFactory is an example of such a subclass.
 
-  <foo> logbot: hello!
-
-the bot will reply:
-
-  <logbot> foo: I am a log bot
-
-Run this script with two arguments, the channel name the bot should
-connect to, and file to log to, e.g.:
-
-  $ python ircLogBot.py test test.log
-
-will log channel #test to the file 'test.log'.
+To customize types of commands, create a subclass of CommandHandler as well.
+ExampleCommandHandler is an example of such a subclass.
 """
 
 from twisted.internet import reactor

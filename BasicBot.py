@@ -5,7 +5,12 @@ import time
 from MessageLogger import MessageLogger
 
 class BasicBot(irc.IRCClient):
-    """A basic IRC bot."""
+    """A basic IRC bot.
+
+    Simply connects to the channel specified by its factory using the nick
+    specified by the factory, logging connection information to the file
+    specified by the factory.
+    """
 
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)
@@ -21,6 +26,5 @@ class BasicBot(irc.IRCClient):
         self.logger.close()
 
     def signedOn(self):
-        """Called when bot has succesfully signed on to server."""
         self.join(self.factory.channel)
 
