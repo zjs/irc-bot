@@ -28,7 +28,7 @@ from twisted.python import log
 import sys
 
 from CommandBotFactory import CommandBotFactory
-from ExampleCommandHandler import ExampleCommandHandler
+from ExampleCommandHandlerFactory import ExampleCommandHandlerFactory
 
 if __name__ == '__main__':
     host = "irc.freenode.net"
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     log.startLogging(sys.stdout)
     
-    f = CommandBotFactory(channel, nickname, logfile, ExampleCommandHandler)
+    f = CommandBotFactory(channel, nickname, logfile, ExampleCommandHandlerFactory(nickname))
 
     reactor.connectTCP(host, port, f)
 

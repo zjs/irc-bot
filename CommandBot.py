@@ -6,6 +6,6 @@ class CommandBot(BasicBot):
         """This will get called when the bot receives a message."""
         user = user.split('!', 1)[0]
 
-        commandHandler = self.factory.commandHandler(self.msg, self.nickname)
+        commandHandler = self.factory.commandHandlerFactory.create(self.msg)
         commandHandler.handle(user, channel, message)
 

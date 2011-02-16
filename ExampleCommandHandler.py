@@ -3,18 +3,19 @@ import re
 from CommandHandler import CommandHandler
 
 class ExampleCommandHandler(CommandHandler):
-    def __init__(self, callback, nickname):
+    def __init__(self, callback, nickname, globalCommandDictionary, directCommandDictionary):
         self.callback = callback
         self.direct_prefix = nickname + ":"
+        self.globalCommandDictionary = globalCommandDictionary
+        self.directCommandDictionary = directCommandDictionary
 
     def handle(self, user, channel, message):
-
         if message.startswith(self.direct_prefix):
             message = message[len(self.direct_prefix):].lstrip()
 
-            self.handleDictionary(self.directCommandDictionary(), user, channel, message)
+            self.handleDictionary(self.directCommandDictionary, user, channel, message)
         else:
-            self.handleDictionary(self.globalCommandDictionary(), user, channel, message)
+            self.handleDictionary(self.globalCommandDictionary, user, channel, message)
 
     def handleDictionary(self, dictionary, user, channel, message):
         for pattern, handler in dictionary.items():
@@ -36,12 +37,5 @@ class ExampleCommandHandler(CommandHandler):
         else:
             self.callback(action.get("target"), action.get("message"))
 
-    def globalCommandDictionary(self):
-        return {"help$": self.help}
 
-    def directCommandDictionary(self):
-        return {"help": self.help}
 
-    def help(self, user, channel, input):
-        message = ["Available commands:","  help - display this message"]
-        return {"target": user, "message": message}
