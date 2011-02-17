@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     log.startLogging(sys.stdout)
     
-    f = CommandBotFactory(channel, nickname, logfile, ExampleCommandHandlerFactory(nickname))
+    f = CommandBotFactory(channel, nickname, logfile, ExampleCommandHandlerFactory(nickname, channel))
 
     reactor.connectTCP(host, port, f)
 
